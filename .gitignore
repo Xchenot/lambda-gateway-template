@@ -29,6 +29,6 @@
 
 /terraform/.terraform
 /terraform/*.tfstate*
-/terraform/provider.tf
-!/terraform/provider*.dist
+/terraform/variables.tf
+!/terraform/variables*.dist
 

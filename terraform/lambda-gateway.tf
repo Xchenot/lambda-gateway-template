@@ -69,6 +69,7 @@ resource "aws_api_gateway_method" "MyDemoMethod" {
   resource_id   = aws_api_gateway_resource.MyDemoResource.id
   http_method   = "ANY"
   authorization = "NONE"
+  api_key_required = true
 }
 
 resource "aws_api_gateway_integration" "MyDemoIntegration" {
@@ -88,7 +89,7 @@ resource "aws_api_gateway_deployment" "MyDemoDeployment" {
   stage_name  = "dev"
 
   variables = {
-    "answer" = "42"
+    "foo" = "bar"
   }
 
   lifecycle {
@@ -97,7 +98,7 @@ resource "aws_api_gateway_deployment" "MyDemoDeployment" {
 }
 
 resource "aws_api_gateway_usage_plan" "MyUsagePlan" {
-  name         = "my-usage-plan-lambda-gateway-template"
+  name         = "lambda-gateway-template-UsagePlan"
   description  = "my lambda gateway usage plan"
 
   api_stages {
@@ -106,13 +107,13 @@ resource "aws_api_gateway_usage_plan" "MyUsagePlan" {
   }
 }
 
-resource "aws_api_gateway_api_key" "MyKey" {
-  name = "my_key"
-  value = "XAVpEOl8Xr22j5A5uXNh9avIjdwnr7POaWMupTIA"
+resource "aws_api_gateway_api_key" "Key" {
+  name = "lambda-gateway-template-key"
+  value = var.api_key
 }
 
 resource "aws_api_gateway_usage_plan_key" "main" {
-  key_id        = "${aws_api_gateway_api_key.MyKey.id}"
+  key_id        = "${aws_api_gateway_api_key.Key.id}"
   key_type      = "API_KEY"
   usage_plan_id = "${aws_api_gateway_usage_plan.MyUsagePlan.id}"
 }

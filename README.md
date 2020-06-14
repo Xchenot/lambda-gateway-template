@@ -53,3 +53,10 @@ $ make node-test
 
 
 ## Bash History
+
+## Troubleshooting
+
+```
+Calling the invoke API action failed with this message: Lambda was unable to decrypt the environment variables because KMS access was denied. Please check the function's KMS key settings. KMS Exception: UnrecognizedClientExceptionKMS Message: The security token included in the request is invalid.
+```
+Terraform destroy and apply should resolve it
