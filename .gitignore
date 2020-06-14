@@ -1,0 +1,34 @@
+#########
+# Build #
+#########
+
+/build
+
+##########
+# Docker #
+##########
+
+/.bash-history
+/docker-compose.override.yml
+
+########
+# Node #
+########
+
+/node_modules
+
+########
+# Env #
+########
+
+/env/secrets
+
+#############
+# Terraform #
+#############
+
+/terraform/.terraform
+/terraform/*.tfstate*
+/terraform/provider.tf
+!/terraform/provider*.dist
+
